@@ -40,7 +40,7 @@ npm run server
       decibel: Number,
     }
     ```  
-    - Route @ ```song/:songId```
+    - Route @ `song/:songId`
     ```
     Comment {
       id: Number,
@@ -53,61 +53,47 @@ npm run server
   2. GET 
     - Route @ `/song/:songId/api/song_id`
     ```
-    // array size 1
-    [
-      Song {
-        id: Number,
-        song_url: String
-        artist_name: String,
-        song_name: String,
-        image: String, // image url
-        hashtag: String, 
-        time_elapsed: Date
-        start_time: Number,
-        song_length: Number,
-        decibel: Number,
-      }
-    ]
+    Song {
+      id: Number,
+      song_url: String
+      artist_name: String,
+      song_name: String,
+      image: String, // image url
+      hashtag: String, 
+      time_elapsed: Date
+      start_time: Number,
+      song_length: Number,
+      decibel: Number,
+    }
     ```
     - Route @ `/song/:songId/api/song_img`
     ```
-    // array size 1
-    [
-      Song {
-        image: String // image url
-      }
-    ]
+    Song {
+      image: String // image url
+    }
     ```
     - Route @ `/song/:songId/api/song_url`
     ```
-    // array size 1
-    [
-      Song {
-        song_url: String
-      }
-    ]
+    Song {
+      song_url: String
+    }
     ```
     - Route @ `/song/:songId/api/song_comment`
     ```
-    [
-      Comment {
-        id: Number,
-        username: String,
-        comment_image: String, // image url
-        comment: String,
-        song_id: Number
-      }
-    ]
+    Comment {
+      id: Number,
+      username: String,
+      comment_image: String, // image url
+      comment: String,
+      song_id: Number
+    }
     ```
     - Route @ `/song/:songId/api/song_comment_img`
     ```
-    [
-      Comment {
-        image: String, // image url
-      }
-    ]
+    Comment {
+      image: String, // image url
+    }
     ```
-    
   3. PUT
     - Route @ `/song/:songId`
   ```
