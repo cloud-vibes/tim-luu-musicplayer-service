@@ -1,7 +1,7 @@
 {
-  "name": "",
+  "name": "tim-luu-musicplayer-service",
   "version": "",
-  "description": "",
+  "description": "server/database development of the Cloud Vibes music player module",
   "author": "",
   "license": "",
   "engines": {
