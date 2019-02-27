@@ -29,64 +29,116 @@ npm run server
     ```
     Song {
       id: Number,
-      image: String, // image url
       song_url: String
+      artist_name: String,
+      song_name: String,
+      image: String, // image url
+      hashtag: String, 
+      time_elapsed: Date
+      start_time: Number,
+      song_length: Number,
+      decibel: Number,
     }
     ```  
     - Route @ ```song/:songId```
     ```
-      Comment {
-        id: Number,
-        image: String, // image url
-        message: String,
-        songId: Number
-      }
+    Comment {
+      id: Number,
+      username: String,
+      comment_image: String, // image url
+      comment: String,
+      song_id: Number
+    }
     ```
   2. GET 
     - Route @ `/song/:songId/api/song_id`
     ```
-    Song {
-      id: Number
-    }
+    // array size 1
+    [
+      Song {
+        id: Number,
+        song_url: String
+        artist_name: String,
+        song_name: String,
+        image: String, // image url
+        hashtag: String, 
+        time_elapsed: Date
+        start_time: Number,
+        song_length: Number,
+        decibel: Number,
+      }
+    ]
     ```
     - Route @ `/song/:songId/api/song_img`
     ```
-    Song {
-      image: String // image url
-    }
+    // array size 1
+    [
+      Song {
+        image: String // image url
+      }
+    ]
     ```
     - Route @ `/song/:songId/api/song_url`
     ```
-    Song {
-      song_url: String
-    }
+    // array size 1
+    [
+      Song {
+        song_url: String
+      }
+    ]
     ```
     - Route @ `/song/:songId/api/song_comment`
     ```
-    Comment {
-      id: Number,
-      message: String,
-      songId: Number
-    }
+    [
+      Comment {
+        id: Number,
+        username: String,
+        comment_image: String, // image url
+        comment: String,
+        song_id: Number
+      }
+    ]
     ```
     - Route @ `/song/:songId/api/song_comment_img`
     ```
-    Comment {
-      id: Number,
-      image: String, // image url
-      songId: Number
-    }
+    [
+      Comment {
+        image: String, // image url
+      }
+    ]
     ```
     
   3. PUT
-  ```sh
-  npm install -g webpack
-  npm install
+    - Route @ `/song/:songId`
+  ```
+  Song {
+    id: Number,
+    song_url: String
+    artist_name: String,
+    song_name: String,
+    image: String, // image url
+    hashtag: String, 
+    time_elapsed: Date
+    start_time: Number,
+    song_length: Number,
+    decibel: Number,
+  }
   ```
   4. DELETE 
-  ```sh
-  npm install -g webpack
-  npm install
+    - Route @ `/song/:songId`
+  ```
+  Song {
+    id: Number,
+    song_url: String
+    artist_name: String,
+    song_name: String,
+    image: String, // image url
+    hashtag: String, 
+    time_elapsed: Date
+    start_time: Number,
+    song_length: Number,
+    decibel: Number,
+  }
   ```
 
 
