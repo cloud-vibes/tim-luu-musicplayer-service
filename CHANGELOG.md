@@ -6,11 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- Set up API routes inside server folder.
+- API routes and functionality for CRUD operations.
+- New server-side file to store the CRUD operations.
+- body-parser as a dependency.
+
+## Changed
+- Legacy db file to support addtional CRUD operations.
 
 ## [0.0.2] - 2019-02-27
 ### Added
-- Initial data shape for CRUD operations inside README
+- Initial data shape for CRUD operations inside README.
 
 ## [0.0.1] - 2019-02-27
 ### Added
