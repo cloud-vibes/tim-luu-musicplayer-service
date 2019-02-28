@@ -25,7 +25,7 @@ npm run server
 ### CRUD Operations
 
   1. POST - Route @ `/song/api`
-  Request contains:
+  - Request contains:
   ```
   Song {
     songname: String,
@@ -42,15 +42,16 @@ npm run server
     commentimage: String
   }
   ```
-  Response sends:
-  If success, 201 Status Code 
-  If error, 400 Status Code
+  - Response sends:
+    - If success, 201 Status Code 
+    - If error, 400 Status Code
+  
   2. GET - Route @ `/song/:songId/api/song_id`
-  Request contains:
-  N/A
+  - Request contains:
+    - N/A
 
-  Response sends:
-  If success,
+  - Response sends:
+    - If success,
   ```
   [
     Song {
@@ -70,13 +71,14 @@ npm run server
     }
   ]
   ```
-  If error, 400 Status Code
+    - If error, 400 Status Code
+  
   3. GET - Route @ `/song/:songId/api/song_img`
-  Request contains:
-  N/A
+  - Request contains:
+    - N/A
 
-  Response sends:
-  If success,
+  - Response sends:
+    - If success,
   ```
   [
     Song {
@@ -84,13 +86,14 @@ npm run server
     }
   ]
   ```
-  If error, 400 Status Code
+    - If error, 400 Status Code
+  
   4. GET - Route @ `/song/:songId/api/song_url`
-  Request contains:
-  N/A
+  - Request contains:
+    - N/A
 
-  Response sends:
-  If success,
+  - Response sends:
+    - If success,
   ```
   [
     Song {
@@ -98,13 +101,13 @@ npm run server
     }
   ]
   ```
-  If error, 400 Status Code
+    - If error, 400 Status Code
   5. GET - Route @ `/song/:songId/api/song_comment`
-  Request contains:
-  N/A
+  - Request contains:
+  -  N/A
 
-  Response sends:
-  If success,
+  - Response sends:
+    - If success,
   ```
   [
     Song {
@@ -115,13 +118,13 @@ npm run server
     }
   ]
   ```
-  If error, 400 Status Code
+    - If error, 400 Status Code
   6. GET - Route @ `/song/:songId/api/song_comment_img`
-  Request contains:
-  N/A
+  - Request contains:
+    - N/A
 
-  Response sends:
-  If success,
+  - Response sends:
+    - If success,
   ```
   [
     Comment {
@@ -129,9 +132,9 @@ npm run server
     }
   ]
   ```
-  If error, 400 Status Code
+    - If error, 400 Status Code
   7. PUT - Route @ `/song/:songId`
-  Request contains:
+  - Request contains:
   ```
   Song {
     songname: String,
@@ -149,16 +152,16 @@ npm run server
   }
   ```
 
-  Response sends:
-  If success, 200 Status Code
-  If error, 400 Status Code
+  - Response sends:
+    - If success, 200 Status Code
+    - If error, 400 Status Code
   8. DELETE - Route @ `/song/:songId`
-  Request contains:
-  N/A
+  - Request contains:
+    - N/A
 
-  Response sends:
-  If success, 200 Status Code
-  If error, 400 Status Code
+  - Response sends:
+    - If success, 200 Status Code
+    - If error, 400 Status Code
 
 
 ## Requirements
