@@ -24,8 +24,7 @@ npm run server
 
 ### CRUD Operations
 
-  1. POST
-    - Route @ `/song/api`
+  1. POST - Route @ `/song/api`
   ```
   Song {
     id: Number,
@@ -40,7 +39,7 @@ npm run server
     decibel: Number,
   }
   ```  
-    - Route @ `song/:songId`
+  2. POST - Route @ `song/:songId`
   ```
   Comment {
     id: Number,
@@ -50,8 +49,7 @@ npm run server
     song_id: Number
   }
   ```
-  2. GET 
-    - Route @ `/song/:songId/api/song_id`
+  3. GET - Route @ `/song/:songId/api/song_id`
   ```
   [
     Song {
@@ -68,7 +66,7 @@ npm run server
     }
   ]
   ```
-    - Route @ `/song/:songId/api/song_img`
+  4. GET - Route @ `/song/:songId/api/song_img`
   ```
   [
     Song {
@@ -76,7 +74,7 @@ npm run server
     }
   ]
   ```
-    - Route @ `/song/:songId/api/song_url`
+  5. GET - Route @ `/song/:songId/api/song_url`
   ```
   [
     Song {
@@ -84,7 +82,7 @@ npm run server
     }
   ]
   ```
-    - Route @ `/song/:songId/api/song_comment`
+  6. GET - Route @ `/song/:songId/api/song_comment`
   ```
   [
     Comment {
@@ -96,7 +94,7 @@ npm run server
     }
   ]
   ```
-    - Route @ `/song/:songId/api/song_comment_img`
+  7. GET - Route @ `/song/:songId/api/song_comment_img`
   ```
   [
     Comment {
@@ -104,8 +102,7 @@ npm run server
     }
   ]
   ```
-  3. PUT
-    - Route @ `/song/:songId`
+  8. PUT - Route @ `/song/:songId`
   ```
   Song {
     id: Number,
@@ -120,8 +117,7 @@ npm run server
     decibel: Number,
   }
   ```
-  4. DELETE 
-    - Route @ `/song/:songId`
+  9. DELETE - Route @ `/song/:songId`
   ```
   Song {
     id: Number,
