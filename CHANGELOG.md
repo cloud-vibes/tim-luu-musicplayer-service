@@ -6,8 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- API routes for CRUD operations.
+- Set up API routes inside server folder.
 
-## [0.0.1]
+## [0.0.2] - 2019-02-27
+### Added
+- Initial data shape for CRUD operations inside README
+
+## [0.0.1] - 2019-02-27
 ### Added
 - This CHANGELOG file to document in a clear manner any updates to the code.
