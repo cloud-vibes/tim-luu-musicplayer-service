@@ -4,7 +4,7 @@ const { username, password } = require('../config.js');
 
 
 const sequelize = new Sequelize('player', username, password, {
-  host: 'cowiedatabase.c3ayie6lwpmv.us-east-1.rds.amazonaws.com',
+  host: 'localhost',
   dialect: 'mysql',
 });
 
@@ -65,6 +65,22 @@ const Song = sequelize.define('songplayer', {
   },
 });
 
+/*
+ *
+ * POST Queries
+ * 
+ */
+
+const addSong = (songInfo) => {
+  return Song.build(songInfo).save();
+}
+
+ /*
+ *
+ * GET Queries
+ * 
+ */
+
 const getAllSongs = (songid) => {
   return Song.findAll({
     where: {
@@ -102,6 +118,37 @@ const getSongCommentImgs = () => {
   });
 };
 
+/*
+ *
+ * PUT Queries
+ * 
+ */
+
+const updateSong = (songInfo, songId) => {
+  return Song.update(songInfo, {
+    where: {id: songId}
+  });
+}
+
+/*
+ *
+ * DELETE Queries
+ * 
+ */
+const deleteSong = (songId) => {
+  return Song.destroy({
+    where: {id: songId}
+  })
+}
+
+
 module.exports = {
-  getAllSongs, getSongImg, getAllComments, getSongCommentImgs, getSongUrl,
+  addSong, 
+  getAllSongs, 
+  getSongImg, 
+  getAllComments, 
+  getSongCommentImgs,
+  getSongUrl,
+  updateSong,
+  deleteSong
 };
