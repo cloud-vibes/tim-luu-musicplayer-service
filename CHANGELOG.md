@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New server-side file to store the CRUD operations.
 - body-parser as a dependency.
 
+### Fixed
+- Formatting README file for CRUD documentation.
+
 ## Changed
 - Legacy db file to support addtional CRUD operations.
 
