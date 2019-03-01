@@ -1,5 +1,5 @@
 const fs = require('fs');
-
+const faker = require('faker');
 /*
  *
  * PURPOSE: to write (or overwrite) a .CSV
@@ -9,19 +9,73 @@ const fs = require('fs');
  * 
  */
 
+let songData = fs.createWriteStream('./songs.csv');
+songData.on('pipe', (src) => {
+  console.log(src);
+})
+songData.setMaxListeners(0);
 
-let data = 'title, artist\n';
+let data = 'title, artist, hashtag, time elapsed, start time, song length, decibel, song url, song image\n';
 
-for(let i = 0; i < 100; i++) {
-  data += `title ${i}, artist ${i}\n`;
+let dates = [];
+for(let day = 0; day < 90; day++) {
+  dates.push(faker.date.past(1));
 }
 
+let urls = [];
+for(let url = 0; url < 1000; url++) {
+  urls.push(faker.image.imageUrl());
+}
 
-fs.writeFile('songs.csv', data, (err) => {
-  if(err) {
-    console.log(err);
-    return;
+let loadSongData = () => {
+  songData.write(data);
+  let numOfWritesLeft = 100;
+  
+  let writeSongs = () => {
+    let isClear = true;
+    while(numOfWritesLeft > 0 && isClear) {
+      let chunk = chunkNLines(20);
+      numOfWritesLeft -= chunk[1];
+      
+      isClear = numOfWritesLeft === 0 
+        ? songData.write(chunk[0], () => { console.log("Finished"); })
+        : songData.write(chunk[0]);
+    }
+    if(numOfWritesLeft > 0) {
+      songData.on('drain', writeSongs);
+    }
   }
-  console.log('There has been success.');
-  return;
-});
+
+  writeSongs();
+}
+
+loadSongData();
+
+/*
+ *
+ * Helper Functions
+ *
+ */
+
+function getRandomInt(min, range) {
+  return min + Math.floor(Math.random() * range);
+};
+
+function chunkNLines(n) {
+  data = '';
+  for(let i = 0; i < n; i++) {
+    let title = `lololol ${i}`;
+    let artist = `mr yeety no ${i}`;
+    let hashtag = `hashswag ${i}`;
+    let timeElapsed = dates[getRandomInt(0, 90)];
+    let startTime = 0;
+    let songLength = getRandomInt(120, 500); // 120 <--> 620
+    let decibel = getRandomInt(62, 18); // 62 <--> 80
+    let songUrl = urls[0];
+    let songImage = urls[0];
+    
+    data += `${title},${artist},${hashtag},${timeElapsed},${startTime},${songLength},${decibel},${songUrl},${songImage}\n`;
+  }
+
+  return [data, n];
+}
