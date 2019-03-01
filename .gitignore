@@ -2,7 +2,7 @@ npm
 npm-debug.log
 node_modules/
 package-lock.json
-./songs.csv
+csv_data/
 
 pids
 *.pid
