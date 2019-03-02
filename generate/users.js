@@ -1,25 +1,21 @@
 const fs = require('fs');
-const faker = require('faker');
+const chunkNLines = require('./helpers.js').chunkNLines;
+const calculateTime = require('./helpers.js').calculateTime;
 
-let userData = fs.createWriteStream('../csv_data/users.csv');
+let userData = fs.createWriteStream('./csv_data/users.csv');
 userData.setMaxListeners(0);
 
 let data = 'username, user image\n';
-
-let urls = [];
-for(let url = 0; url < 1000; url++) {
-  urls.push(faker.image.imageUrl());
-}
 
 let loadUserData = () => {
   let start = Date.now()
   userData.write(data);
   let numOfWritesLeft = 100;
 
-  let writeData = () => {
+  let writeUsers = () => {
     let isClear = true;
     while(numOfWritesLeft > 0 && isClear) {
-      let chunk = chunkNLines(10);
+      let chunk = chunkNLines(20, 'user');
       numOfWritesLeft -= chunk[1];
   
       isClear = numOfWritesLeft === 0
@@ -27,39 +23,12 @@ let loadUserData = () => {
         : userData.write(chunk[0]);
     }
     if(numOfWritesLeft > 0) {
-      userData.once('drain', writeData);
+      userData.once('drain', writeUsers);
     }
   }
 
-  writeData();
+  writeUsers();
 };
 
 loadUserData();
 
-/*
- *
- * Helper Functions
- *
- */
-
-function getRandomInt(min, range) {
-  return min + Math.floor(Math.random() * range);
-};
-
-function chunkNLines(n) {
-  data = '';
-  for(let i = 0; i < n; i++) {
-    let username = `"${faker.internet.userName()}"`;
-    let user_image = urls[getRandomInt(0, 1000)];
-    
-    data += `${username},${user_image}\n`;
-  }
-
-  return [data, n];
-}
-
-function calculateTime(start) {
-  let millis = Date.now() - start;
-  let seconds = Math.floor(millis/1000);
-  console.log(`Finished in ${seconds} seconds.`);
-}
