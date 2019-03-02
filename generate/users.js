@@ -10,7 +10,7 @@ let data = 'username, user image\n';
 let loadUserData = () => {
   let start = Date.now()
   userData.write(data);
-  let numOfWritesLeft = 100;
+  let numOfWritesLeft = 1000000;
 
   let writeUsers = () => {
     let isClear = true;

@@ -10,12 +10,12 @@ let data = 'message, user id, song id\n';
 let loadCommentData = () => {
   let start = Date.now();
   commentData.write(data);
-  let numOfWritesLeft = 100;
+  let numOfWritesLeft = 100000000;
 
   let writeComments = () => {
     let isClear = true;
     while(numOfWritesLeft > 0 && isClear) {
-      let chunk = chunkNLines(20, 'comment');
+      let chunk = chunkNLines(1000, 'comment');
       numOfWritesLeft -= chunk[1];
   
       isClear = numOfWritesLeft === 0

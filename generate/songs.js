@@ -19,7 +19,7 @@ let data = 'title, artist, hashtag, time elapsed, start time, song length, decib
 let loadSongData = () => {
   let start = Date.now();
   songData.write(data);
-  let numOfWritesLeft = 100;
+  let numOfWritesLeft = 10000000;
 
   let writeSongs = () => {
     let isClear = true;
