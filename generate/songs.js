@@ -24,7 +24,7 @@ let loadSongData = () => {
   let writeSongs = () => {
     let isClear = true;
     while(numOfWritesLeft > 0 && isClear) {
-      let chunk = chunkNLines(20, 'song');
+      let chunk = chunkNLines(1000, 'song');
       numOfWritesLeft -= chunk[1];
       
       isClear = numOfWritesLeft === 0 

@@ -15,7 +15,7 @@ let loadUserData = () => {
   let writeUsers = () => {
     let isClear = true;
     while(numOfWritesLeft > 0 && isClear) {
-      let chunk = chunkNLines(20, 'user');
+      let chunk = chunkNLines(1000, 'user');
       numOfWritesLeft -= chunk[1];
   
       isClear = numOfWritesLeft === 0
