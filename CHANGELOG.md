@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Script to load CSV file.
+
+## [0.0.3] = 2019-02-28
+### Added
 - API routes and functionality for CRUD operations.
 - New server-side file to store the CRUD operations.
 - body-parser as a dependency.
