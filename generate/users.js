@@ -8,6 +8,7 @@ userData.setMaxListeners(0);
 let data = 'username, user image\n';
 
 let loadUserData = () => {
+  console.log('Now loading: users');
   let start = Date.now()
   userData.write(data);
   let numOfWritesLeft = 1000000;
@@ -30,5 +31,4 @@ let loadUserData = () => {
   writeUsers();
 };
 
-loadUserData();
-
+userData.on('open', loadUserData);

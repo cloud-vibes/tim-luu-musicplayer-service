@@ -8,6 +8,7 @@ commentData.setMaxListeners(0);
 let data = 'message, user id, song id\n';
 
 let loadCommentData = () => {
+  console.log('Now loading: comments');
   let start = Date.now();
   commentData.write(data);
   let numOfWritesLeft = 100000000;
@@ -30,4 +31,4 @@ let loadCommentData = () => {
   writeComments();
 };
 
-loadCommentData();
+commentData.on('open', loadCommentData);
