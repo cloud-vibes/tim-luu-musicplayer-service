@@ -17,6 +17,7 @@ songData.setMaxListeners(0);
 let data = 'title, artist, hashtag, time elapsed, start time, song length, decibel, song url, song image\n';
 
 let loadSongData = () => {
+  console.log('Now loading: songs');
   let start = Date.now();
   songData.write(data);
   let numOfWritesLeft = 10000000;
@@ -24,7 +25,7 @@ let loadSongData = () => {
   let writeSongs = () => {
     let isClear = true;
     while(numOfWritesLeft > 0 && isClear) {
-      let chunk = chunkNLines(20, 'song');
+      let chunk = chunkNLines(1000, 'song');
       numOfWritesLeft -= chunk[1];
       
       isClear = numOfWritesLeft === 0 
@@ -37,7 +38,6 @@ let loadSongData = () => {
   }
 
   writeSongs();
-}
+};
 
-loadSongData();
-
+songData.on('open', loadSongData);

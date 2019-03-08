@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- Script to load CSV file.
+- Script to load CSV files for users, songs, and comments.
 
 ## [0.0.3] = 2019-02-28
 ### Added
