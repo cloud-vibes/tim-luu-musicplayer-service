@@ -2,7 +2,7 @@ const faker = require('faker');
 
 let dates = [];
 for(let day = 0; day < 90; day++) {
-  dates.push(faker.date.past(1));
+  dates.push(faker.date.past(1).toISOString());
 }
 
 let urls = [];
@@ -16,12 +16,12 @@ let createColumns = {
     let title = `"${faker.random.words()}"`;
     let artist = getRandomInt(0, 1000000);
     let hashtag = `"${faker.random.word()}"`;
-    let timeElapsed = dates[getRandomInt(0, 90)];
+    let timeElapsed = dates[getRandomInt(0, 89)];
     let startTime = 0;
     let songLength = getRandomInt(120, 500); // 120 <--> 620
     let decibel = getRandomInt(62, 18); // 62 <--> 80
-    let songUrl = urls[getRandomInt(0, 1000)];
-    let songImage = urls[0];
+    let songUrl = urls[0];
+    let songImage = urls[getRandomInt(0, 1000)];
 
     return `${title},${artist},${hashtag},${timeElapsed},${startTime},${songLength},${decibel},${songUrl},${songImage}\n`
   },
@@ -64,5 +64,6 @@ function getRandomInt(min, range) {
 
 module.exports = {
   calculateTime,
-  chunkNLines
+  chunkNLines,
+  getRandomInt
 }

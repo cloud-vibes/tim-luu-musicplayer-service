@@ -17,6 +17,7 @@ songData.setMaxListeners(0);
 let data = 'title, artist, hashtag, time elapsed, start time, song length, decibel, song url, song image\n';
 
 let loadSongData = () => {
+  console.log('Now loading: songs');
   let start = Date.now();
   songData.write(data);
   let numOfWritesLeft = 10000000;
@@ -37,7 +38,6 @@ let loadSongData = () => {
   }
 
   writeSongs();
-}
+};
 
-loadSongData();
-
+songData.on('open', loadSongData);
