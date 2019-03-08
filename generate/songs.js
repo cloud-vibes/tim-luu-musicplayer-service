@@ -38,6 +38,6 @@ let loadSongData = () => {
   }
 
   writeSongs();
-}
+};
 
 songData.on('open', loadSongData);

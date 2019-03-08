@@ -2,6 +2,15 @@ const fs = require('fs');
 const chunkNLines = require('./helpers.js').chunkNLines;
 const calculateTime = require('./helpers.js').calculateTime;
 
+/*
+ *
+ * PURPOSE: to write (or overwrite) a .CSV
+ * file to be loaded into Postgres. Each CSV
+ * will correspond to a column identifier inside
+ * the table that the .CSV corresponds to.
+ * 
+ */
+
 let userData = fs.createWriteStream('./csv_data/users.csv');
 userData.setMaxListeners(0);
 
