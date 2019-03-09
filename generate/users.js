@@ -9,7 +9,17 @@ const calculateTime = require('./helpers.js').calculateTime;
  * will correspond to a column identifier inside
  * the table that the .CSV corresponds to.
  * 
+ * Query Commands:
+ * CREATE TABLE users (id serial NOT NULL, username text NOT NULL, user_image text, PRIMARY KEY (id));
+ * 
+ * COPY users(username, user_image) 
+ * FROM '/Users/timluu/hackreactor/system-design-capstone/tim-luu-musicplayer-service/csv_data/users.csv' 
+ * DELIMITER ',' 
+ * CSV HEADER;
+ * 
  */
+
+
 
 let userData = fs.createWriteStream('./csv_data/users.csv');
 userData.setMaxListeners(0);
