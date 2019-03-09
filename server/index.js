@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -11,16 +12,18 @@ app.use(cors());
 app.use('/song/:songId', express.static(path.join(__dirname, '../client/dist')));
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.use(bodyParser.json());
-
 /*
  *
  * POST Requests
  * 
  */
+app.use(bodyParser.json());
 
 app.post('/song/api', (req, res) => {
+  
+  
   let songInfo = req.body;
+  console.log(req.body);
   db.addSong(songInfo)
     .then(() => {
       res.status(201).send();

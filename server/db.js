@@ -95,7 +95,12 @@ const Comment = sequelize.define('comments', {
  */
 
 const addSong = (songInfo) => {
-  return Song.build(songInfo).save();
+  return sequelize.query(
+    `INSERT INTO songs (title, artist_id, hashtag, time_elapsed, start_time, song_length, decibel, song_image, song_url) 
+    VALUES ('${songInfo.title}', ${songInfo.artist_id}, '${songInfo.hashtag}', 
+    '${songInfo.time_elapsed}', ${songInfo.start_time}, ${songInfo.song_length}, ${songInfo.decibel},
+    '${songInfo.song_image}', '${songInfo.song_url}');`
+  );
 }
 
  /*
@@ -117,48 +122,6 @@ const getAllCommentsOfSong = (songId) => {
     WHERE comments.user_id = users.id AND comments.song_id = ${songId};`
   );
 }
-
-/* 
-
-DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED
- const getAllSongs = (songid) => {
-  return Song.findAll({
-    where: {
-      id: songid,
-    },
-  });
-};
-
-const getSongImg = (songid) => {
-  return Song.findAll({
-    attributes: ['imgurl'],
-    where: {
-      id: songid,
-    },
-  });
-};
-
-const getSongUrl = (songid) => {
-  return Song.findAll({
-    attributes: ['songurl'],
-    where: {
-      id: songid,
-    },
-  });
-};
-
-const getAllComments = () => {
-  return Song.findAll({
-  });
-};
-
-const getSongCommentImgs = () => {
-  return Song.findAll({
-    attributes: ['commentimage'],
-  });
-};
-DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED
-*/
 
 /*
  *
