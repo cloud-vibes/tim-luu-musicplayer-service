@@ -3,7 +3,7 @@ import moment from 'moment';
 
 
 const ElapsedTime = (props) => {
-  const timeLapse = moment(props.info.timeelapsed).fromNow();
+  const timeLapse = moment(props.info.time_elapsed).fromNow();
   return (
     <div className="Time-Container">
       <div className="Elapsed-time">

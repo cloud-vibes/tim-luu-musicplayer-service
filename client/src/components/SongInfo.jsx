@@ -3,10 +3,10 @@ import React from 'react';
 const SongInfo = props => (
   <div className="Info-Container">
     <div className="Artist-Name">
-      {props.song.artistname}
+      {props.song.username}
     </div>
     <span className="Song-Name">
-      {props.song.songname}
+      {props.song.title}
     </span>
   </div>
 );
