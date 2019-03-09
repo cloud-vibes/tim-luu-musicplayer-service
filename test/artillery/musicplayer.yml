@@ -1,0 +1,29 @@
+config:
+  target: "http://localhost:8081"
+  http: 
+    pool: 10
+  processor: "./randomGenerator.js"
+  phases:
+    - duration: 60
+      arrivalRate: 100
+scenarios:
+  - name: "Getting song and comments"
+    flow:
+      - function: "generateSongId"
+      - get:
+          url: "/song/{{songId}}/api/song_id"
+  - name: "Posting song to database"
+    flow:
+      - function: "generateSong"
+      - post: 
+          url: "/song/api"
+          json: 
+            title: "{{title}}"
+            artist_id: "{{artist_id}}"
+            hashtag: "{{hashtag}}"
+            time_elapsed: "{{time_elapsed}}"
+            start_time: "{{start_time}}"
+            song_length: "{{song_length}}"
+            decibel: "{{decibel}}"
+            song_image: "{{song_image}}"
+            song_url: "{{song_url}}"
