@@ -9,19 +9,21 @@ const app = express();
 const PORT = 8081;
 
 app.use(cors());
-app.use('/song/:songId', express.static(path.join(__dirname, '../client/dist')));
 app.use(express.static(path.join(__dirname, '../client/dist')));
+// app.use('*', express.static(path.join(__dirname, '../client/dist/index.html')));
+app.use(bodyParser.json());
+
+app.get('/api/musicplayer/bundle', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client/dist/bundle.js'));
+})
 
 /*
  *
  * POST Requests
  * 
  */
-app.use(bodyParser.json());
 
-app.post('/song/api', (req, res) => {
-  
-  
+app.post('/api/musicplayer', (req, res) => {
   let songInfo = req.body;
   console.log(req.body);
   db.addSong(songInfo)
@@ -40,7 +42,7 @@ app.post('/song/api', (req, res) => {
  * 
  */
 
-app.get('/song/:songId/api/song_id', (req, res) => {
+app.get('/api/musicplayer/song/:songId/', (req, res) => {
   const { songId } = req.params;
   Promise.all([db.getSong(songId), db.getAllCommentsOfSong(songId)])
     .then((songInfo) => {
@@ -61,7 +63,7 @@ app.get('/song/:songId/api/song_id', (req, res) => {
  * 
  */
 
-app.put('/song/:songId', (req, res) => { 
+app.put('/api/musicplayer/song/:songId', (req, res) => { 
   db.updateSong(req.body, req.params.songId)
     .then(() => {
       console.log('Successfully updated.');
@@ -80,7 +82,7 @@ app.put('/song/:songId', (req, res) => {
 
  */
 
-app.delete('/song/:songId', (req, res) => {
+app.delete('/api/musicplayer/song/:songId', (req, res) => {
   db.deleteSong(req.params.songId)
     .then(() => {
       console.log('Successfully deleted.');
@@ -92,6 +94,11 @@ app.delete('/song/:songId', (req, res) => {
     })
 })
 
+////////////////////////////////////////////////////////////////////
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`NOW LISTENING ON PORT ${PORT}`);

@@ -33,7 +33,9 @@ class App extends React.Component {
   }
 
   getSongAndComments() {
-    axios.get(`${window.location.pathname}api/song_id`)
+    let songId = window.location.pathname.split('/')[window.location.pathname.split('/').length - 1];
+    
+    axios.get(`/api/musicplayer/song/${songId}/`)
       .then((response) => {
         let {song, comments} = response.data;
         this.setState({
