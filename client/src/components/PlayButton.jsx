@@ -27,10 +27,10 @@ class PlayButton extends React.Component {
         {!this.props.play ? <FontAwesomeIcon onClick={() => { this.props.onToggle(); this.controller(); }} style={{ height: '60px', width: '60px' }} className="playBtn" icon="play-circle" />
           : <FontAwesomeIcon onClick={() => { this.props.onToggle(); this.controller(); }} style={{ height: '60px', width: '60px' }} className="playBtn" icon="pause-circle" />
     }
-        {this.props.songUrl.songurl && this.state.initialPlay
+        {this.props.songUrl && this.state.initialPlay
         && (
         <audio controls style={{ display: 'none'} } id="fredness" name="media">
-          <source id="songsrc" src={this.props.songUrl.songurl} type="audio/mp3" />
+          <source id="songsrc" src={this.props.songUrl} type="audio/mp3" />
         </audio>
         )
     }

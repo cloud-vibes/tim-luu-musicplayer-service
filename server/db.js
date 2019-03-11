@@ -3,66 +3,89 @@ const Sequelize = require('sequelize');
 const { username, password } = require('../config.js');
 
 
-const sequelize = new Sequelize('player', username, password, {
+const sequelize = new Sequelize('cloudvibes', username, password, {
   host: 'localhost',
-  dialect: 'mysql',
+  dialect: 'postgres',
 });
 
-const Song = sequelize.define('songplayer', {
+const User = sequelize.define('users', {
+  id: { 
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true
+  },
+  username: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  user_image: {
+    type: Sequelize.TEXT
+  }
+})
+
+const Song = sequelize.define('songs', {
   id: {
-    type: Sequelize.INTEGER(11),
+    type: Sequelize.INTEGER,
     autoIncrement: true,
     allowNull: false,
     primaryKey: true,
   },
-  songname: {
-    type: Sequelize.STRING(200),
+  title: {
+    type: Sequelize.STRING,
     allowNull: false,
   },
-  artistname: {
-    type: Sequelize.STRING(32),
-    allowNull: false,
-  },
-  imgurl: {
-    type: Sequelize.STRING(100),
+  artist_id: {
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
   hashtag: {
     type: Sequelize.STRING(100),
-    allowNull: false,
   },
-  timeelapsed: {
+  time_elapsed: {
     type: Sequelize.DATE(),
     allowNull: false,
   },
-  starttime: {
-    type: Sequelize.INTEGER(11),
+  start_time: {
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
-  songlength: {
-    type: Sequelize.INTEGER(11),
+  song_length: {
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
   decibel: {
-    type: Sequelize.INTEGER(3),
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
-  comment: {
-    type: Sequelize.STRING(200),
+  song_image: {
+    type: Sequelize.TEXT,
+  },
+  song_url: {
+    type: Sequelize.TEXT,
+    allowNull: false,
+  }
+});
+  
+const Comment = sequelize.define('comments', {  
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey: true,
+  },
+  message: {
+    type: Sequelize.TEXT,
     allowNull: false,
   },
-  username: {
-    type: Sequelize.STRING(32),
+  user_id: {
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
-  songurl: {
-    type: Sequelize.STRING(100),
+  song_id: {
+    type: Sequelize.INTEGER,
     allowNull: false,
-  },
-  commentimage: {
-    type: Sequelize.STRING(100),
-    allowNull: false,
-  },
+  }
 });
 
 /*
@@ -72,7 +95,12 @@ const Song = sequelize.define('songplayer', {
  */
 
 const addSong = (songInfo) => {
-  return Song.build(songInfo).save();
+  return sequelize.query(
+    `INSERT INTO songs (title, artist_id, hashtag, time_elapsed, start_time, song_length, decibel, song_image, song_url) 
+    VALUES ('${songInfo.title}', ${songInfo.artist_id}, '${songInfo.hashtag}', 
+    '${songInfo.time_elapsed}', ${songInfo.start_time}, ${songInfo.song_length}, ${songInfo.decibel},
+    '${songInfo.song_image}', '${songInfo.song_url}');`
+  );
 }
 
  /*
@@ -81,42 +109,19 @@ const addSong = (songInfo) => {
  * 
  */
 
-const getAllSongs = (songid) => {
-  return Song.findAll({
-    where: {
-      id: songid,
-    },
-  });
-};
+const getSong = (songId) => {
+  return sequelize.query(
+    `SELECT songs.title, users.username, songs.hashtag, songs.time_elapsed, songs.start_time, songs.song_length,
+    songs.decibel, songs.song_url, songs.song_image FROM songs, users WHERE songs.id = ${songId} AND songs.artist_id = users.id;`
+  );
+}
 
-const getSongImg = (songid) => {
-  return Song.findAll({
-    attributes: ['imgurl'],
-    where: {
-      id: songid,
-    },
-  });
-};
-
-const getSongUrl = (songid) => {
-  return Song.findAll({
-    attributes: ['songurl'],
-    where: {
-      id: songid,
-    },
-  });
-};
-
-const getAllComments = () => {
-  return Song.findAll({
-  });
-};
-
-const getSongCommentImgs = () => {
-  return Song.findAll({
-    attributes: ['commentimage'],
-  });
-};
+const getAllCommentsOfSong = (songId) => {
+  return sequelize.query(
+    `SELECT users.username, users.user_image, comments.message FROM comments, users 
+    WHERE comments.user_id = users.id AND comments.song_id = ${songId};`
+  );
+}
 
 /*
  *
@@ -144,11 +149,8 @@ const deleteSong = (songId) => {
 
 module.exports = {
   addSong, 
-  getAllSongs, 
-  getSongImg, 
-  getAllComments, 
-  getSongCommentImgs,
-  getSongUrl,
+  getSong,
+  getAllCommentsOfSong,
   updateSong,
   deleteSong
 };
