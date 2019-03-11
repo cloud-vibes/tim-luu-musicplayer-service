@@ -26,7 +26,7 @@ class Comment extends React.Component {
   }
 
   tick() {
-    if (this.props.play && this.state.seconds < this.props.song.songlength) {
+    if (this.props.play && this.state.seconds < this.props.song.song_length) {
       this.setState({
         seconds: this.state.seconds + 1,
       });
@@ -48,7 +48,7 @@ class Comment extends React.Component {
   handleClickChange(index) {
     console.log(this.state.seconds);
     this.setState({
-      seconds: index * (this.props.song.songlength / this.state.commentCount),
+      seconds: index * (this.props.song.song_length / this.state.commentCount),
     });
   }
 
@@ -63,23 +63,23 @@ class Comment extends React.Component {
             onMouseEnter={() => this.handleHoverChange(i)}
             onMouseLeave={() => this.handleLeave()}
             isHovered={Boolean(this.state.display === i)}
-            isCurrent={Boolean((i * (this.props.song.songlength / this.state.commentCount)) <= this.state.seconds
-              && ((i + 1) * (this.props.song.songlength / this.state.commentCount)) >= this.state.seconds
+            isCurrent={Boolean((i * (this.props.song.song_length / this.state.commentCount)) <= this.state.seconds
+              && ((i + 1) * (this.props.song.song_length / this.state.commentCount)) >= this.state.seconds
               && this.state.display === 0)}
             onClick={() => this.handleClickChange(i)}
           >
             <CommentSpan
               isHovered={Boolean(this.state.display === i)}
-              isCurrent={Boolean((i * (this.props.song.songlength / this.state.commentCount)) <= this.state.seconds
-                && ((i + 1) * (this.props.song.songlength / this.state.commentCount)) >= this.state.seconds
+              isCurrent={Boolean((i * (this.props.song.song_length / this.state.commentCount)) <= this.state.seconds
+                && ((i + 1) * (this.props.song.song_length / this.state.commentCount)) >= this.state.seconds
                 && this.state.display === 0)}
             >
               {this.props.info[i]}
             </CommentSpan>
             <NameSpan
               isHovered={Boolean(this.state.display === i)}
-              isCurrent={Boolean((i * (this.props.song.songlength / this.state.commentCount)) <= this.state.seconds
-                && ((i + 1) * (this.props.song.songlength / this.state.commentCount)) >= this.state.seconds
+              isCurrent={Boolean((i * (this.props.song.song_length / this.state.commentCount)) <= this.state.seconds
+                && ((i + 1) * (this.props.song.song_length / this.state.commentCount)) >= this.state.seconds
                 && this.state.display === 0)}
             >
               {this.props.name[i]}

@@ -14,7 +14,7 @@ let createColumns = {
   
   song: function() {
     let title = `"${faker.random.words()}"`;
-    let artist = getRandomInt(0, 1000000);
+    let artist = getRandomInt(1, 999999);
     let hashtag = `"${faker.random.word()}"`;
     let timeElapsed = dates[getRandomInt(0, 89)];
     let startTime = 0;
@@ -35,8 +35,8 @@ let createColumns = {
 
   comment: function() {
     let message = `"${faker.lorem.sentence()}"`;
-    let user_id = getRandomInt(0, 1000000);
-    let song_id = getRandomInt(0, 10000000);
+    let user_id = getRandomInt(1, 999999);
+    let song_id = getRandomInt(1, 9999999);
     
     return `${message},${user_id},${song_id}\n`;
   }
