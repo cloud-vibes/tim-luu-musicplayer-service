@@ -12,7 +12,9 @@ const calculateTime = require('./helpers.js').calculateTime;
  * Query Commands:
  * CREATE TABLE songs (id serial NOT NULL, title text NOT NULL, artist_id int NOT NULL, hashtag text, time_elapsed timestamp NOT NULL,
  * start_time int NOT NULL, song_length int NOT NULL, decibel int NOT NULL, song_url text NOT NULL, song_image text,
- * PRIMARY KEY (id), FOREIGN KEY (artist_id) REFERENCES users(id) ON DELETE CASCADE);
+ * PRIMARY KEY (id));
+ * 
+ * ALTER TABLE songs ADD CONSTRAINT users_songs FOREIGN KEY (artist_id) REFERENCES users(id) ON DELETE CASCADE;
  * 
  * COPY songs(title, artist_id, hashtag, time_elapsed, start_time, song_length, decibel, song_url, song_image) 
  * FROM '/Users/timluu/hackreactor/system-design-capstone/tim-luu-musicplayer-service/csv_data/songs.csv' 
