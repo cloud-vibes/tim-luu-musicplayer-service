@@ -1,11 +1,12 @@
 const Sequelize = require('sequelize');
 // const Seed = require('../seed.js');
-const { username, password } = require('../config.js');
+const config = require('../config.js');
 
 
-const sequelize = new Sequelize('cloudvibes', username, password, {
-  host: 'localhost',
-  dialect: 'postgres',
+const sequelize = new Sequelize('cloudvibes', config.username, config.password, {
+  host: config.host,
+  port: config.port,
+  dialect: config.dialect
 });
 
 const User = sequelize.define('users', {
