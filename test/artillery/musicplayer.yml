@@ -1,5 +1,5 @@
 config:
-  target: "http://localhost:8081"
+  target: "http://54.242.57.180:8081"
   http: 
     pool: 10
   processor: "./randomGenerator.js"
