@@ -12,8 +12,8 @@ const calculateTime = require('./helpers.js').calculateTime;
  * Query Commands:
  * CREATE TABLE comments (id serial NOT NULL,message text NOT NULL,user_id int NOT NULL,song_id int NOT NULL,PRIMARY KEY (id));
  * 
- * ALTER TABLE comments ADD CONSTRAINT constraint_fk_users FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
- * ALTER TABLE comments ADD CONSTRAINT constraint_fk_users FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+ * ALTER TABLE comments ADD CONSTRAINT users_comments FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+ * ALTER TABLE comments ADD CONSTRAINT songs_comments FOREIGN KEY (song_id) REFERENCES songs(id) ON DELETE CASCADE;
  * 
  * CREATE INDEX idx_comments_song_id ON comments(song_id);
  * 
@@ -32,7 +32,7 @@ let loadCommentData = () => {
   console.log('Now loading: comments');
   let start = Date.now();
   commentData.write(data);
-  let numOfWritesLeft = 25000000;
+  let numOfWritesLeft = 100000000;
 
   let writeComments = () => {
     let isClear = true;

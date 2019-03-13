@@ -4,7 +4,7 @@ node_modules/
 package-lock.json
 csv_data/*
 !csv_data/.gitkeep
-newrelic.config.txt
+newrelic.config.js
 
 pids
 *.pid
