@@ -1,4 +1,4 @@
-// require('newrelic');
+require('newrelic');
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -10,7 +10,7 @@ const PORT = 8081;
 
 app.use(cors());
 app.use(express.static(path.join(__dirname, '../client/dist')));
-// app.use('*', express.static(path.join(__dirname, '../client/dist/index.html')));
+
 app.use(bodyParser.json());
 
 app.get('/api/musicplayer/bundle', (req, res) => {
