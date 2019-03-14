@@ -5,6 +5,7 @@ package-lock.json
 csv_data/*
 !csv_data/.gitkeep
 newrelic.config.js
+.DS_Store
 
 pids
 *.pid
